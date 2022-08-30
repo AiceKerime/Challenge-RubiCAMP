@@ -1,4 +1,4 @@
-function sum(a, b, c, d, e, f, g, h, i) {
+function sum() {
     let hasil = 0;
     for (let i = 0; i < arguments.length; i++) { 
         hasil += arguments[i];
