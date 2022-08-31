@@ -4,19 +4,18 @@ function indexPrime(num) {
     for (let i=2; i; i++) {
         let prime=true
         for (let j=2; j<i; j++) {
-            if(i!=j && i%j===0){
+            if(i%j==0){
                 prime=false
-                break;
             }
         }
         if(prime){
-            arr.push(i)
+            result.push(i)
         }
-        if(arr.length===num){
+        if(result.length==num){
             break;
         }
     }
-    let hasilAkhir=result.push(result[result.length-1])
+    let hasilAkhir=result [result.length-1]
     arr.push(hasilAkhir)
     return arr
 }

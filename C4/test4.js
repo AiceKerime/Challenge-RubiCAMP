@@ -1,5 +1,4 @@
 function indexPrime(param1) {
-    let result = []
     let arr = [];
 
     for (let i = 2; i; i++){
@@ -13,8 +12,7 @@ function indexPrime(param1) {
         if (isPrime) arr.push(i);
         if (arr.length === param1) break;
     }
-    result.push(arr[arr.length-1])
-    return result;
+    return arr[arr.length-1];
 }
 
 console.log(indexPrime(4)) //result => 7
