@@ -14,22 +14,21 @@ function romawi(n) {
         IV: 4,
         I: 1
       };
-      var str = '';
+    var str = '';
     
-      for (var i of Object.keys(roma)) {
+    for (var i of Object.keys(roma)) {
         var q = Math.floor(n / roma[i]);
         n -= q * roma[i];
         str += i.repeat(q);
-      }
-    
-      return str;
+    }
+    return str;
 }
 
 console.log("Script Testing untuk Konversi Romawi\n");
-console.log("input   |   expected  |  result");
-console.log("--------|-------------|--------");
-console.log("4       | IV          |  ", romawi(4));
-console.log("9       | IX          |  ", romawi(9));
-console.log("13      | XIII        |  ", romawi(13));
-console.log("1453    | MCDLIII     |  ", romawi(1453));
-console.log("1646    | MDCXLVI     |  ", romawi(1646));
+console.log("input    |   expected  |   result");
+console.log("---------|-------------|---------");
+console.log("4        | IV          | ", romawi(4));
+console.log("9        | IX          | ", romawi(9));
+console.log("13       | XIII        | ", romawi(13));
+console.log("1453     | MCDLIII     | ", romawi(1453));
+console.log("1646     | MDCXLVI     | ", romawi(1646));
