@@ -1,13 +1,19 @@
 function indexPrime(param1) {
-    let arr = [], result = [];
-    for (let i = 2; i <= param1; i++){
-        if (!arr[i]){
-            result.push(i);
-            for (let j = i; j <= param1; j+=i){
-                arr[j] = true;
+    let result = []
+    let arr = [];
+
+    for (let i = 2; i; i++){
+        let isPrime = true
+        for (let j = 2; j < i; j++){
+            if (i % j === 0){
+                isPrime = false;
+                break;
             }
         }
+        if (isPrime) arr.push(i);
+        if (arr.length === param1) break;
     }
+    result.push(arr[arr.length-1])
     return result;
 }
 
