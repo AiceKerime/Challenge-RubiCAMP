@@ -2,5 +2,5 @@ function stringManipulation(word) {
     
 }
 
-stringManipulation('ayam');
-stringManipulation('bebek')
+stringManipulation('ayam'); //"ayam"
+stringManipulation('bebek'); // "ebekbnyo"
