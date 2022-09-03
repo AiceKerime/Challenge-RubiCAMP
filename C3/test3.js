@@ -15,11 +15,11 @@ function romawi(n) {
         I: 1
       };
     var str = '';
-    
+    //Object.keys itu berfungsi untuk mengembalikan dari nama properti 
     for (var i of Object.keys(roma)) {
         var q = Math.floor(n / roma[i]);
-        n -= q * roma[i];
-        str += i.repeat(q);
+        n = n - q * roma[i];
+        str = str + i.repeat(q);
     }
     return str;
 }
@@ -32,3 +32,5 @@ console.log("9        | IX          | ", romawi(9));
 console.log("13       | XIII        | ", romawi(13));
 console.log("1453     | MCDLIII     | ", romawi(1453));
 console.log("1646     | MDCXLVI     | ", romawi(1646));
+
+console.log('M'.repeat(0))

@@ -15,7 +15,7 @@ function indexPrime(num) {
             break;
         }
     }
-    let hasilAkhir=result [result.length-1]
+    let hasilAkhir=result[result.length-1]
     arr.push(hasilAkhir)
     return arr
 }

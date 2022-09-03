@@ -15,4 +15,4 @@ function sentencesManipulation(sentence) {
     console.log(str)
 }
 
-sentencesManipulation('kucing emak makan ikan')
+sentencesManipulation('kucing suka makan ikan emas')
