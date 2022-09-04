@@ -27,7 +27,6 @@ let spiral = (param1) => {
             arrSpiral.push(arrMatrix[bawah][l])
         }
         bawah--
-
         for (let m = bawah; m >= atas; m--) {
             arrSpiral.push(arrMatrix[m][kiri])
         }
@@ -35,7 +34,6 @@ let spiral = (param1) => {
     }
     console.log(arrSpiral)
 }
-
 spiral(5) //Output sampai nilai 24
 spiral(6) //Output sampai nilai 35
 spiral(7) //Output sampai nilai 48
