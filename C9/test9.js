@@ -1,19 +1,41 @@
 let spiral = (param1) => {
-    let arr = []
-    let val = 0
+    let arrMatrix = []
+    let arrSpiral = []
+    let val = 0;
+    let atas = 0;
+    let kiri = 0;
+    let kanan = param1 - 1;
+    let bawah = param1 - 1;
 
     for (let i = 0; i < param1; i++) {
-        arr[i] = []
+        arrMatrix[i] = []
         for (let j = 0; j < param1; j++) {
-            arr[i].push(val++)
+            arrMatrix[i].push(val++)
         }
-        console.log(arr)
     }
-    
-    
+    while (atas <= bawah && kiri <= kanan) {
+        for (let j = atas; j <= kanan; j++) {
+            arrSpiral.push(arrMatrix[atas][j])
+        }
+        atas++
+        for (let k = atas; k <= bawah; k++) {
+            arrSpiral.push(arrMatrix[k][kanan])
+        }
+        kanan--
 
+        for (let l = kanan; l >= kiri; l--) {
+            arrSpiral.push(arrMatrix[bawah][l])
+        }
+        bawah--
+
+        for (let m = bawah; m >= atas; m--) {
+            arrSpiral.push(arrMatrix[m][kiri])
+        }
+        kiri++
+    }
+    console.log(arrSpiral)
 }
 
-spiral(5) //Output sampai nilai 27
-spiral(6) //Output sampai nilai 41
+spiral(5) //Output sampai nilai 24
+spiral(6) //Output sampai nilai 35
 spiral(7) //Output sampai nilai 48

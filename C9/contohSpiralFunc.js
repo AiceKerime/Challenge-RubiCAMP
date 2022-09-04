@@ -1,4 +1,4 @@
-function spiralMatrix(n) {
+function spiral(n) {
     const arr = Array.from({ length: n }, () => []);
     let row = 0;
     let col = 0;
@@ -35,9 +35,9 @@ function spiralMatrix(n) {
         }
         col++;
     }
-    console.log(arr);
+    console.log(arr)
 }
 
-spiralMatrix(5)
-// spiralMatrix(6)
-// spiralMatrix(7)
+spiral(5) //Output sampai nilai 24
+spiral(6) //Output sampai nilai 35
+spiral(7) //Output sampai nilai 48
