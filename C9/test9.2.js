@@ -1,6 +1,7 @@
 const spiral = (param1) => {
     const matriks = []
     let count = 0
+    let counter = param1 * param1
 
     for (let i = 0; i < param1; i++) {
         matriks[i] = []
@@ -16,7 +17,7 @@ const spiral = (param1) => {
 
     let result = []
 
-    while(result.length < param1 * param1) {
+    while(result.length < counter) {
         // Kanan
         for (; x < atas; x++) {
             result.push(matriks[y][x])
