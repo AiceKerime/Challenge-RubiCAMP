@@ -1,11 +1,12 @@
+
 function indexPrime(num) {
-    let arr=[]
     let result = [];
-    for (let i=2; i; i++) {
+    for (let i=2;i; i++) {
         let prime=true
-        for (let j=2; j<i; j++) {
-            if(i%j==0){
+        for (let j=2; j < i; j++) {
+            if(i%j===0){
                 prime=false
+                break;
             }
         }
         if(prime){
@@ -15,10 +16,9 @@ function indexPrime(num) {
             break;
         }
     }
-    let hasilAkhir=result[result.length-1]
-    arr.push(hasilAkhir)
-    return arr
+    result.push[result.length-1]
+    return result[result.length-1]
 }
-console.log(indexPrime(4))
-console.log(indexPrime(500))
-console.log(indexPrime(37786))
+console.log(indexPrime(4)) //result => 7
+console.log(indexPrime(500)) //result => 3571
+console.log(indexPrime(37786)) //result => 450881

@@ -5,6 +5,7 @@ function spiral(n) {
     let rowEnd = n - 1;
     let colEnd = n - 1;
     let counter = 1;
+    
     while (col <= colEnd && row <= rowEnd) {
 
         // Top row & middle value (Where col === colEnd && row === rowEnd)

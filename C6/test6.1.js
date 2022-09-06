@@ -6,7 +6,7 @@ function sentencesManipulation(sentence) {
         let word = wordSplit[i]
         let hurufAwal = wordSplit[i].charAt(0);
 
-        if (word.startsWith('a') || word.startsWith('i') || word.startsWith('u') || word.startsWith('e') || word.startsWith('o') || word.startsWith('A') || word.startsWith('I') || word.startsWith('U') || word.startsWith('E') || word.startsWith('O')) {
+        if (word[0] == 'a' || word[0] == 'i' || word[0] == 'u' || word[0] == 'e' || word[0] == 'o') {
             str += wordSplit[i] + ' '
         } else {
             str += wordSplit[i].substr(1) + hurufAwal + 'nyo '
@@ -15,4 +15,4 @@ function sentencesManipulation(sentence) {
     console.log(str)
 }
 
-sentencesManipulation('kucing suka makan ikan emas')
+sentencesManipulation('ibu pergi ke pasar bersama aku')

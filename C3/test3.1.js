@@ -1,5 +1,5 @@
 function romawi(n) {
-    let roma = {
+    const roma = { // Membuat objek untuk menampung properti dan value dari angka romawi
         M: 1000,
         CM: 900,
         D: 500,
@@ -14,14 +14,15 @@ function romawi(n) {
         IV: 4,
         I: 1
     }    
-    var str = '';
+    let hasil = ''; // Membuat variable penampung dengan value string kosong
 
-    for (var i of Object.keys(roma)) {
-        var q = Math.floor(n / roma[i]);
-        n = n - q * roma[i];
-        str = str + i.repeat(q);
+    for (const roman in roma) { // Membuat perulangan dengan variable roman yang mengambil value dari roma
+        while (roma[roman] <= n) { // Membuat kondisi, ketika roma yang ada didalam variable roman kurang dari parameter n
+            n -= roma[roman] // Akan meng-eksekusi parameter n yang isi nya parameter n -  roma yang ada didalam variable roman
+            hasil += roman // Memasukkan value dari peng-kondisi-an roman kedalam variable hasil
+        }
     }
-    return str;
+    return hasil; // Mengembalikan value dari variable hasil
 }
 
 console.log("Script Testing untuk Konversi Romawi\n");
