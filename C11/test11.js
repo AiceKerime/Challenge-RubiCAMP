@@ -19,9 +19,9 @@ console.log(`Pertanyaan : ${data[count].definition}`); // .definition untuk mema
 rl.prompt();
 
 rl.on('line', line => {
-    if (count < data.length-1) {
+    if (count < data.length - 1) {
         if (line.toLowerCase() !== data[count].term) { // .term untuk memanggil properti dari object di data.json yang 
-            console.log('Wkwkwwkwk, Anda jawabanmu kurang tepat!')
+            console.log('Wkwkwwkwk, jawabanmu kurang tepat!')
             rl.prompt()
         } else {
             count++
@@ -31,17 +31,16 @@ rl.on('line', line => {
         }
     } else {
         if (line.toLowerCase() !== data[count].term) {
-            console.log('Wkwkwwkwk, Anda jawabnmu kurang tepat!')
-            console.log(`Pertanyaan: ${data[count].definition}`)
+            console.log('Wkwkwwkwk, jawabnmu kurang tepat!')
             rl.prompt()
         } else {
             console.log('Naise, jawabanmu benar!\n')
-            console.log('Yow mantap, Anda menang quiz nya :D')
+            console.log('Yow mantap, kamu menang quiz nya :D')
             process.exit(0)
         }
     }
-  rl.prompt();
+    rl.prompt();
 }).on('close', () => {
-  console.log('Dadah xD');
-  process.exit(0);
+    console.log('Dadah xD');
+    process.exit(0);
 });

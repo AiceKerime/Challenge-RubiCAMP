@@ -1,15 +1,19 @@
+console.log(''.toLowerCase())
+
 function sentecesManipulation(sentence){
         let str = ' '
         let wordSplit = sentence.split(' ')
-    
+
         for (let i = 0; i < wordSplit.length; i++) {
             let word = wordSplit[i]
             let hurufAwal = wordSplit[i].charAt(0);
                     
-            if (word[0].toLowerCase() == 'a' || word[0].toLowerCase() == 'i' || word[0].toLowerCase() == 'u' || word[0].toLowerCase() == 'e' || word[0].toLowerCase() == 'o') {
+            if (word.toLowerCase().startsWith('a') || word.toLowerCase().startsWith('i') || word.toLowerCase().startsWith('u') || word.toLowerCase().startsWith('e') || word.toLowerCase().startsWith('o')) {
                 str += wordSplit[i] + ' '
             } else {
-                str += wordSplit[i].substr(1) + hurufAwal + 'nyo '
+                if(wordSplit[i] != ''){
+                  str += wordSplit[i].substr(1) + hurufAwal + 'nyo '
+                }
             }
         } 
         return str
