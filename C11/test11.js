@@ -33,12 +33,12 @@ rl.on('line', line => {
     rl.prompt()
   } else {
     console.log('Naise, jawabanmu benar!\n')
-    console.log('Yow mantap, kamu menang quiz nya :D')
-    process.exit(0)
+    console.log('Yow mantap, kamu menang quiz nya :D\n')
+    process.exit()
   }
 
   rl.prompt();
 }).on('close', () => {
   console.log('Dadah xD');
-  process.exit(0);
+  process.exit();
 });
