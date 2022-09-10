@@ -1,0 +1,14 @@
+[
+    {
+        "definition": "3 * 2 * 5 =",
+        "term": "30"
+    },
+    {
+        "definition": "49 / 7 * 3 = ",
+        "term": "21"
+    },
+    {
+        "definition": "7 * 7 * 7 = ",
+        "term": "343"
+    }
+]

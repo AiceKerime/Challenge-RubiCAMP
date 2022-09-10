@@ -7,7 +7,7 @@ if (!process.argv[2]) {
 const fs = require('fs');
 const readline = require('readline');
 
-const file = fs.readFileSync('./C12/data2.json')
+const file = fs.readFileSync('./C12/math.json')
 const data = JSON.parse(file)
 
 const rl = readline.createInterface({
@@ -18,7 +18,7 @@ const rl = readline.createInterface({
 
 console.log(`Hey, yo! Selamat datang di uji pengetahuan tentang sejarah bangsa Indonesia! Kamu akan diberikan pertanyaan dari file ini \'data.json\'
 
-Jawablah dengan jawaban yang tepat.
+Jawablah dengan jawaban yang tepat.\n
 
 Gunakan \'skip\' untuk menangguhkan pertanyaannya dan di akhir pertanyaan yang kamu skip akan ditanyakan kembali.
 `);
@@ -43,6 +43,7 @@ rl.on('line', line => {
                 rl.prompt()
             }
         } else if (line.toLowerCase() === 'skip') {
+            data.push(data[count])
             count++
             console.log(`Pertanyaan: ${data[count].definition}`)
             rl.prompt()
