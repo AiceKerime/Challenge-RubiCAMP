@@ -18,7 +18,7 @@ const rl = readline.createInterface({
 
 console.log(`Hey, yo! Selamat datang di uji pengetahuan tentang sejarah bangsa Indonesia! Kamu akan diberikan pertanyaan dari file ini \'data.json\'
 
-Jawablah dengan jawaban yang tepat.
+Jawablah dengan jawaban yang tepat.\n
 
 Gunakan \'skip\' untuk menangguhkan pertanyaannya dan di akhir pertanyaan yang kamu skip akan ditanyakan kembali.
 `);
@@ -26,13 +26,13 @@ Gunakan \'skip\' untuk menangguhkan pertanyaannya dan di akhir pertanyaan yang k
 let count = 0;
 let wrong = 0
 
-console.log(`Pertanyaan : ${data[count].definition}`); // .definition untuk memanggil value dari properti yang bernama definition
+console.log(`Pertanyaan : ${data[count].definition}`);
 rl.prompt();
 
 rl.on('line', line => {
     if (count < data.length - 1) {
         if (line.toLowerCase() !== 'skip') {
-            if (line.toLowerCase() !== data[count].term) { // .term untuk memanggil properti dari object di data.json yang
+            if (line.toLowerCase() !== data[count].term) {
                 wrong++
                 console.log(`Wkwkwwkwk, jawabanmu kurang tepat! Kamu telah salah menjawab pertanyaan ini sebanyak ${wrong}. Coba lagi yaw!`)
                 rl.prompt()
@@ -43,11 +43,13 @@ rl.on('line', line => {
                 rl.prompt()
             }
         } else if (line.toLowerCase() === 'skip') {
+            data.push(data[count])
             count++
             console.log(`Pertanyaan: ${data[count].definition}`)
             rl.prompt()
         }
     } else if (line.toLowerCase() !== data[count].term) {
+        wrong = 0
         wrong++
         console.log(`Wkwkwwkwk, jawabanmu kurang tepat! Kamu telah salah menjawab pertanyaan ini sebanyak ${wrong}. Coba lagi yaw!`)
         rl.prompt()
