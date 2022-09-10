@@ -1,13 +1,13 @@
 if (!process.argv[2]) {
     console.log('Tolong sertakan inputan soalnya')
-    console.log('Misalnya \'node solution.js data.json\'')
+    console.log('Misalnya \'node test12.js data.json\'')
     process.exit(0);
 }
 
 const fs = require('fs');
 const readline = require('readline');
 
-const file = fs.readFileSync('./C11/data.json')
+const file = fs.readFileSync('./C12/data2.json')
 const data = JSON.parse(file)
 
 const rl = readline.createInterface({
@@ -20,7 +20,7 @@ console.log(`Hey, yo! Selamat datang di uji pengetahuan tentang sejarah bangsa I
 
 Jawablah dengan jawaban yang tepat.
 
-Gunakan \'skip\' untuk menangguhkan pertanyaannya dan di akhir pertanyaan yang kamu skip akan ditanyakan kembali
+Gunakan \'skip\' untuk menangguhkan pertanyaannya dan di akhir pertanyaan yang kamu skip akan ditanyakan kembali.
 `);
 
 let count = 0;
@@ -32,30 +32,28 @@ rl.prompt();
 rl.on('line', line => {
     if (count < data.length - 1) {
         if (line.toLowerCase() !== 'skip') {
-            if (line.toLowerCase() !== data[count].term) {
-                wrong++;
-                console.log(`Wkwkwwkwk, jawabanmu kurang tepat! Kamu salah menjawab sebanyak ${wrong}. Coba lagi yaw!`)
+            if (line.toLowerCase() !== data[count].term) { // .term untuk memanggil properti dari object di data.json yang
+                wrong++
+                console.log(`Wkwkwwkwk, jawabanmu kurang tepat! Kamu telah salah menjawab pertanyaan ini sebanyak ${wrong}. Coba lagi yaw!`)
                 rl.prompt()
             } else {
-                count++;
+                count++
                 console.log('Naise, jawabanmu benar!\n')
-                wrong = 0
                 console.log(`Pertanyaan: ${data[count].definition}`)
                 rl.prompt()
             }
         } else if (line.toLowerCase() === 'skip') {
-            const soal = data.splice(count, 2)
-            data = soal.concat
+            count++
             console.log(`Pertanyaan: ${data[count].definition}`)
             rl.prompt()
         }
     } else if (line.toLowerCase() !== data[count].term) {
-        wrong++;
-        console.log(`Wkwkwwkwk, jawabanmu kurang tepat! Kamu salah menjawab sebanyak ${wrong}. Coba lagi yaw!`)
+        wrong++
+        console.log(`Wkwkwwkwk, jawabanmu kurang tepat! Kamu telah salah menjawab pertanyaan ini sebanyak ${wrong}. Coba lagi yaw!`)
         rl.prompt()
     } else {
         console.log('Naise, jawabanmu benar!\n')
-        console.log('Yow mantap, kamu menang quiz nya :D')
+        console.log('Yow mantap, kamu menang quiz nya :D\n')
         process.exit(0)
     }
     rl.prompt();

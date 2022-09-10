@@ -7,7 +7,7 @@ const data = JSON.parse(file)
 const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout,
-  prompt: 'Tebakanmu > '
+  prompt: 'Jawabanmu: '
 });
 
 console.log("Hey, yo! Selamat datang di uji pengetahuan tentang sejarah negara Indonesia!\n")
@@ -29,16 +29,14 @@ rl.on('line', line => {
       rl.prompt()
     }
   } else if (line.toLowerCase() !== data[count].term) {
-    console.log('Wkwkwwkwk, jawabnmu kurang tepat!')
+    console.log('Wkwkwwkwk, jawabanmu kurang tepat!')
     rl.prompt()
   } else {
     console.log('Naise, jawabanmu benar!\n')
     console.log('Yow mantap, kamu menang quiz nya :D\n')
-    process.exit()
+    process.exit(0)
   }
-
-  rl.prompt();
 }).on('close', () => {
   console.log('Dadah xD');
-  process.exit();
+  process.exit(0);
 });

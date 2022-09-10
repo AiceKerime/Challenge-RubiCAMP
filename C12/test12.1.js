@@ -1,66 +1,71 @@
-if (!process.argv[2]) {
-    console.log('Tolong sertakan inputan soalnya')
-    console.log('Misalnya \'node solution.js data.json\'')
-    process.exit(0);
-}
-
 const fs = require('fs');
 const readline = require('readline');
-
-const file = fs.readFileSync('./C11/data.json')
-const data = JSON.parse(file)
+const process = require('process');
 
 const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout,
-    prompt: 'Tebakanmu > '
+    prompt: 'Tebakan: '
 });
 
-console.log(`Hey, yo! Selamat datang di uji pengetahuan tentang sejarah bangsa Indonesia! Kamu akan diberikan pertanyaan dari file ini \'data.json\'
+process.argv.forEach((val, index) => {
+    if (index === 2) {
+        const file = fs.readFileSync(val);
+        const data = JSON.parse(file);
 
-Jawablah dengan jawaban yang tepat.
+        console.log(
+            `Selamat datang di permainan Tebak-tebakan, kamu akan di berikan pertanyaan dari file ini '${val}'
+Untuk bermain, jawablah dengan jawaban yang sesuai.
+Gunakan 'skip' untuk menangguhkan pertanyaannya, dan di akhir pertanyaan akan di tanyakan lagi.
+`
+        );
 
-Gunakan \'skip\' untuk menangguhkan pertanyaannya dan di akhir pertanyaan yang kamu skip akan ditanyakan kembali
-`);
+        let arrFromJson = [...data];
+        let count = 0;
+        let wrong = 0;
 
-let count = 0;
-let wrong = 0
+        console.log(`Pertanyaan: ${arrFromJson[count].definition}`);
+        rl.prompt();
 
-console.log(`Pertanyaan : ${data[count].definition}`); // .definition untuk memanggil value dari properti yang bernama definition
-rl.prompt();
+        rl.on('line', line => {
+            if (count < arrFromJson.length - 1) {
+                if (line.toLowerCase() !== 'skip') {
+                    if (line.toLowerCase() !== arrFromJson[count].term) {
+                        wrong++;
+                        console.log(
+                            `Wkwkwk, Anda kurang beruntung! Anda telah salah ${wrong}, silakan coba lagi. \n`
+                        );
+                        rl.prompt();
+                    } else {
+                        count++;
+                        console.log('Selamat Anda benar!\n');
+                        wrong = 0;
+                        console.log(`Pertanyaan: ${arrFromJson[count].definition}`);
+                        rl.prompt();
+                    }
+                } else {
+                    if (line.toLowerCase() === 'skip') {
+                        const itemToEnd = arrFromJson.splice(count, 1);
+                        arrFromJson = arrFromJson.concat(itemToEnd);
 
-rl.on('line', line => {
-    if (count < data.length - 1) {
-        if (line.toLowerCase() !== 'skip') {
-            if (line.toLowerCase() !== data[count].term) {
-                wrong++;
-                console.log(`Wkwkwwkwk, jawabanmu kurang tepat! Kamu salah menjawab sebanyak ${wrong}. Coba lagi yaw!`)
-                rl.prompt()
+                        // console.log(arrFromJson);
+                        console.log(`Pertanyaan: ${arrFromJson[count].definition}`);
+                        rl.prompt();
+                    }
+                }
             } else {
-                count++;
-                console.log('Naise, jawabanmu benar!\n')
-                wrong = 0
-                console.log(`Pertanyaan: ${data[count].definition}`)
-                rl.prompt()
+                if (line.toLowerCase() !== arrFromJson[count].term) {
+                    wrong++;
+                    console.log(
+                        `Wkwkwk, Anda kurang beruntung! Anda telah salah ${wrong}, silakan coba lagi. \n`
+                    );
+                    rl.prompt();
+                } else {
+                    console.log('Selamat Anda benar!\n');
+                    console.log('Hore Anda Menang!');
+                    process.exit(0);
+                }
             }
-        } else if (line.toLowerCase() === 'skip') {
-            const toEnd = data.splice(count, 2)
-            data = data.concat(toEnd)
-
-            console.log(`Pertanyaan: ${data[count].definition}`)
-            rl.prompt()
-        } else if (line.toLowerCase() !== data[count].term) {
-            wrong++;
-            console.log(`Wkwkwwkwk, jawabanmu kurang tepat! Kamu salah menjawab sebanyak ${wrong}. Coba lagi yaw!`)
-            rl.prompt()
-        } else {
-            console.log('Naise, jawabanmu benar!\n')
-            console.log('Yow mantap, kamu menang quiz nya :D')
-            process.exit(0)
-        }
+        });
     }
-    rl.prompt();
-}).on('close', () => {
-    console.log('Dadah xD');
-    process.exit(0);
 });
