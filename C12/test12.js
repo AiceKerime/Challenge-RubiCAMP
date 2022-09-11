@@ -1,14 +1,13 @@
 if (!process.argv[2]) {
-    console.log('Tolong sertakan inputan soalnya')
-    console.log('Misalnya \'node test12.js data.json\'')
+    console.log('Tolong sertakan inputan soalnya\n Misalnya \'node test12.js data.json\'')
     process.exit(0);
 }
 
 const fs = require('fs');
 const readline = require('readline');
 
-const file = fs.readFileSync('./C12/math.json')
-const data = JSON.parse(file)
+let file = fs.readFileSync(process.argv[2], "utf-8")
+let data = JSON.parse(file)
 
 const rl = readline.createInterface({
     input: process.stdin,
@@ -16,7 +15,7 @@ const rl = readline.createInterface({
     prompt: 'Tebakanmu > '
 });
 
-console.log(`Hey, yo! Selamat datang di uji pengetahuan tentang sejarah bangsa Indonesia! Kamu akan diberikan pertanyaan dari file ini \'data.json\'
+console.log(`Hey, yo! Selamat datang di uji pengetahuan tentang sejarah bangsa Indonesia! Kamu akan diberikan pertanyaan dari file ini \'soal.json atau math.json\'
 Jawablah dengan jawaban yang tepat.\n
 Gunakan \'skip\' untuk menangguhkan pertanyaannya dan di akhir pertanyaan yang kamu skip akan ditanyakan kembali.
 `);
