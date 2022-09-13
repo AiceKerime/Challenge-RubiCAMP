@@ -1,0 +1,28 @@
+[
+   {
+      "tag": [
+         "bakar",
+         "panggang"
+      ],
+      "content": "Makan ayam ",
+      "status": false
+   },
+   {
+      "tag": [
+         "java",
+         "Script"
+      ],
+      "content": "belajar koding ",
+      "status": "[x]"
+   },
+   {
+      "tag": [],
+      "content": "Belajar editing ",
+      "status": false
+   },
+   {
+      "tag": [],
+      "content": "Minum kopi ",
+      "status": "[x]"
+   }
+]

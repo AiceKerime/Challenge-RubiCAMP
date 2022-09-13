@@ -36,7 +36,7 @@ switch (process.argv[2]) {
         data.push({
             'tag': [],
             'content': output,
-            'status': '[x]'
+            'cek': []
         })
         fs.writeFileSync('data.json', JSON.stringify(data, null, 3))
         console.log(`"${output.trim()}" telah ditambahkan`)
@@ -45,7 +45,7 @@ switch (process.argv[2]) {
     case 'list':
         console.log('Daftar Kerjaan')
         for (let i = 0; i < data.length; i++) {
-            console.log(`${i + 1}. ${data[i].status ? '[x]' : '[ ]'} ${data[i].content.trim()}.`)
+            console.log(`${i + 1}. ${data[i].status ? '[x]' : '[ ]'} ${data[i].content}.`)
         }
         break;
 
@@ -61,60 +61,14 @@ switch (process.argv[2]) {
         process.exit(0);
 
     case 'complete':
-        data[index].status = '[x]'
+        data[index]['status'] = true
         console.log(`"${data[index]['content']}" telah selesai`)
         fs.writeFileSync('data.json', JSON.stringify(data, null, 3))
         process.exit(0)
 
     case 'uncomplete':
-        data[index].status = false
+        data[index]['status'] = false
         console.log(`"${data[index]['content']}" tidak jadi selesai`)
         fs.writeFileSync('data.json', JSON.stringify(data, null, 3))
         process.exit(0)
-
-    case 'list:outstanding':    //list yang belum selesai
-        console.log('Daftar Pekerjaan')
-        if (input[3] == 'asc')  //dari lama ke sebentar
-            for (let i = 0; i < data.length; i++) {
-                if (data[i].status == false) {
-                    console.log(`${i + 1}. [ ] ${data[i].content}`);
-                }
-            };
-
-        if (input[3] == 'desc') //dari sebentar ke lama
-            for (let i = data.length - 1; i >= 0; i--) {
-                if (data[i].status == false) {
-                    console.log(`${i + 1}. [ ] ${data[i].content}`);
-                }
-            };
-        process.exit(0);
-
-    case 'list:completed':  //list yang sudah selesai
-        console.log('Daftar Pekerjaan')
-        if (input[3] == 'asc')  //dari lama ke sebentar
-            for (let i = 0; i < data.length; i++) {
-                if (data[i].status == '[x]') {
-                    console.log(`${i + 1}. ${data[i].status} ${data[i].content}`);
-                }
-            };
-
-        if (input[3] == 'desc') //dari sebentar ke lama
-            for (let i = data.length - 1; i >= 0; i--) {
-                if (data[i].status == '[x]') {
-                    console.log(`${i + 1}. ${data[i].status} ${data[i].content}`);
-                }
-            };
-        process.exit(0);
-
-
-    case 'tag':
-        for (let i = 4; i < input.length; i++) {
-            if (!data[index].tag.includes(input[i])) {
-                data[index].tag.push(input[i])
-            }
-        }
-        data[index].tag.length - 1;
-        console.log(`tag "${data[index].tag}" telah ditambahkan ke daftar ${data[index].content}`)
-        fs.writeFileSync('data.json', JSON.stringify(data, null, 3))
-        process.exit(0);
-};
+}
