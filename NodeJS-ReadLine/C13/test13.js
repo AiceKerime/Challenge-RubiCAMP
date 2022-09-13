@@ -118,3 +118,18 @@ switch (process.argv[2]) {
         fs.writeFileSync('data.json', JSON.stringify(data, null, 3))
         process.exit(0);
 };
+
+filtering(process.argv[2])
+
+function filtering() { //fungsi untuk Filter
+    console.log('Daftar Pekerjaan')
+    let kata = process.argv[2]
+    let kata2 = kata.slice(0, 7)
+    if (kata2 == 'filter:') {
+        data.map((item, index) => {
+            if (item.tag.includes(kata.slice(7))) {
+                console.log(`${index + 1}. ${item.status ? '[x]' : '[ ]'} ${item.content}`);
+            }
+        })
+    };
+};
