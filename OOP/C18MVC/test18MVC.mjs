@@ -28,7 +28,7 @@ export default class Login {
         ViewLog.welcome()
         users.username()
     }
-
+ 
     static home() {
         ViewLog.home()
         rl.question('Masukan salah satu nomor dari opsi diatas : ', (opsi) => {

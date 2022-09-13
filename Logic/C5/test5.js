@@ -6,7 +6,6 @@ function stringManipulation(word) {
     }
 }
 
-
-stringManipulation('ITIK') // => 'ayam'
-stringManipulation('ayam') // => 'iyam'
+stringManipulation('ITIK') // => 'ITIK'
+stringManipulation('ayam') // => 'ayam'
 stringManipulation('bebek') // => 'ebekbnyo'
