@@ -9,7 +9,7 @@ CREATE TABLE mahasiswa(nim INT(11) PRIMARY KEY NOT NULL, nama VARCHAR(120) NOT N
 CREATE TABLE jurusan (id_jurusan VARCHAR(4) PRIMARY KEY NOT NULL, nama_jurusan VARCHAR(100));
 
 -- Create table dosen
-CREATE TABLE dosen (nip VARCHAR(5), nama_dosen VARCHAR(120));
+CREATE TABLE dosen (nip VARCHAR(11), nama_dosen VARCHAR(120));
 
 -- Create table matakuliah
 CREATE TABLE matakuliah (kdMatkul VARCHAR(5) PRIMARY KEY NOT NULL, nama_matkul VARCHAR(70) NOT NULL, sks INT(1) NOT NULL);
