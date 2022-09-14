@@ -15,7 +15,7 @@ CREATE TABLE dosen (nip VARCHAR(11), nama_dosen VARCHAR(120));
 CREATE TABLE matakuliah (kdMatkul VARCHAR(5) PRIMARY KEY NOT NULL, nama_matkul VARCHAR(70) NOT NULL, sks INT(1) NOT NULL);
 
 -- Create table laporan
-CREATE TABLE raport (id INT PRIMARY KEY AUTOINCREMENT, nim INT(11) NOT NULL, kdMatkul VARCHAR(5) NOT NULL, nip VARCHAR(5) NOT NULL, id_jurusan VARCHAR(4) NOT NULL, nilai VARCHAR(2), FOREIGN KEY (nim) REFERENCES mahasiswa(nim), FOREIGN KEY (kdMatkul) REFERENCES matakuliah(kdMatkul), FOREIGN KEY (nip) REFERENCES dosen(nip), FOREIGN KEY (id_jurusan) REFERENCES jurusan(id_jurusan));
+CREATE TABLE raport (id INT(4) PRIMARY KEY NOT NULL, nim INT(11) NOT NULL, kdMatkul VARCHAR(5) NOT NULL, nip VARCHAR(5) NOT NULL, id_jurusan VARCHAR(4) NOT NULL, nilai VARCHAR(2), FOREIGN KEY (nim) REFERENCES mahasiswa(nim), FOREIGN KEY (kdMatkul) REFERENCES matakuliah(kdMatkul), FOREIGN KEY (nip) REFERENCES dosen(nip), FOREIGN KEY (id_jurusan) REFERENCES jurusan(id_jurusan));
 
 -- Insert data to mahasiswa tables
 INSERT INTO mahasiswa VALUES ('23010030401', 'Rafi Izzaturohman', 'Sanggar Indah Banjaran', 'Rekayasa Perangkat Lunak'), ('23010030402', 'Nadia Amelia Putri', 'Desa Cingcin', 'PGSD Penjas'), ('23010030403', 'Dimas Reza', 'Sanggar Indah Banjaran', 'Pendidikan Teknik Otomasi Industri dan Robotika');
