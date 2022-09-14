@@ -21,6 +21,7 @@ $ node test13.js filter: <tag_name>
 
 if (!process.argv[2]) {
     console.log(text)
+    process.exit(0)
 }
 
 switch (process.argv[2]) {
