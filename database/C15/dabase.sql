@@ -95,4 +95,4 @@ SELECT * FROM khs JOIN dosen ON dosen.nip=khs.nip JOIN mahasiswa ON mahasiswa.ni
 -- Without JOIN
 SELECT mahasiswa.nama, mahasiswa.nim, matakuliah.nama_matkul, dosen.nama_dosen, dosen.nip, khs.nilai FROM matakuliah, mahasiswa, dosen, khs WHERE UPPER(khs.nilai)>'C' AND mahasiswa.nim=khs.nim AND khs.kdMatkul=matakuliah.kd_matkul AND khs.nip=dosen.nip; -- Tanpa nama jurusan
 
-SELECT mahasiswa.nim, mahasiswa.nama, matakuliah.nama_matkul, mahasiswa.nama_jurusan, dosen.nama_dosen, dosen.nip, khs.nilai FROM matakuliah, mahasiswa, dosen, jurusan, khs WHERE UPPER(khs.nilai)>'C' AND mahasiswa.nim=khs.nim AND khs.kdMatkul=matakuliah.kd_matkul AND khs.nip=dosen.nip; -- Dengan nama jurusan
+SELECT mahasiswa.nim, mahasiswa.nama, matakuliah.nama_matkul, mahasiswa.nama_jurusan, dosen.nama_dosen, dosen.nip, khs.nilai FROM matakuliah, mahasiswa, dosen, khs WHERE UPPER(khs.nilai)>'C' AND mahasiswa.nim=khs.nim AND khs.kdMatkul=matakuliah.kd_matkul AND khs.nip=dosen.nip; -- Dengan nama jurusan
