@@ -52,7 +52,10 @@ switch (process.argv[2]) {
 
     case 'task':
         console.log('Daftar Pekerjaan')
-        console.log(`${index + 1}. ${data[index].status ? '[x]' : '[ ]'} ${data[index].content}`)
+        console.log(`
+id: ${index + 1} 
+title: ${data[index].content}
+Status: ${data[index].status ? true : false} `)
         process.exit(0);
 
     case 'delete':

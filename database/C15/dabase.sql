@@ -14,7 +14,7 @@ CREATE TABLE dosen (nip VARCHAR(11), nama_dosen VARCHAR(120));
 -- Create table matakuliah
 CREATE TABLE matakuliah (kd_matkul VARCHAR(5) PRIMARY KEY NOT NULL, nama_matkul VARCHAR(70) NOT NULL, sks INT(2) NOT NULL);
 
--- Create table laporan
+-- Create table khs
 CREATE TABLE khs (id INTEGER PRIMARY KEY AUTOINCREMENT, nim INT(11) NOT NULL, kdMatkul VARCHAR(5) NOT NULL, nip VARCHAR(5) NOT NULL, id_jurusan VARCHAR(4) NOT NULL, nilai VARCHAR(2), FOREIGN KEY (nim) REFERENCES mahasiswa(nim), FOREIGN KEY (kdMatkul) REFERENCES matakuliah(kdMatkul), FOREIGN KEY (nip) REFERENCES dosen(nip), FOREIGN KEY (id_jurusan) REFERENCES jurusan(id_jurusan));
 
 -- Insert data to mahasiswa tables
