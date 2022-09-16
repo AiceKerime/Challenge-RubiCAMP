@@ -89,3 +89,4 @@ SELECT mahasiswa.nama, mahasiswa.dob,(cast(strftime('%Y.%m%d', 'now') - strftime
 
 -- Menampilkan data mahasiswa yang harus memperbaiki nilai yang mana jika nilai nya E ataupun D
 SELECT * FROM khs JOIN dosen ON dosen.nip=khs.nip JOIN mahasiswa ON mahasiswa.nim=khs.nim WHERE nilai LIKE 'D%' OR nilai LIKE 'E%'; --8
+SELECT * FROM khs WHERE nilai LIKE 'D%' OR nilai LIKE 'E%';
