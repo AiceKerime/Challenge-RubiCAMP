@@ -5,18 +5,6 @@ sqlite3 univdabase.db
 -- Create table mahasiswa
 CREATE TABLE mahasiswa(nim INT(11) PRIMARY KEY NOT NULL, nama VARCHAR(120) NOT NULL, alamat TEXT NOT NULL, nama_jurusan VARCHAR(100) NOT NULL, FOREIGN KEY (jurusan) REFERENCES jurusan(id_jurusan));
 
--- Create table jurusan
-CREATE TABLE jurusan (id_jurusan VARCHAR(4) PRIMARY KEY NOT NULL, nama_jurusan VARCHAR(100));
-
--- Create table dosen
-CREATE TABLE dosen (nip VARCHAR(11), nama_dosen VARCHAR(120));
-
--- Create table matakuliah
-CREATE TABLE matakuliah (kd_matkul VARCHAR(5) PRIMARY KEY NOT NULL, nama_matkul VARCHAR(70) NOT NULL, sks INT(2) NOT NULL);
-
--- Create table khs
-CREATE TABLE khs (id INTEGER PRIMARY KEY AUTOINCREMENT, nim INT(11) NOT NULL, kdMatkul VARCHAR(5) NOT NULL, nip VARCHAR(5) NOT NULL, id_jurusan VARCHAR(4) NOT NULL, nilai VARCHAR(2), FOREIGN KEY (nim) REFERENCES mahasiswa(nim), FOREIGN KEY (kdMatkul) REFERENCES matakuliah(kdMatkul), FOREIGN KEY (nip) REFERENCES dosen(nip), FOREIGN KEY (id_jurusan) REFERENCES jurusan(id_jurusan));
-
 -- Insert data to mahasiswa tables
 INSERT INTO mahasiswa VALUES 
 ('23010030401', 'Rafi Izzaturohman', 'Sanggar Indah Banjaran', 'Rekayasa Perangkat Lunak'), ('23010030402', 'Amelianti Khoirunnisa', 'Perum Parahyangan Kencana', 'Rekayasa Perangkat Lunak'), ('23010030403', 'Nadia Amelia Putri', 'Desa Cingcin', 'PGSD Penjas'), 
@@ -24,11 +12,17 @@ INSERT INTO mahasiswa VALUES
 ('23010030405', 'Dimas Reza', 'Sanggar Indah Banjaran', 'Pendidikan Teknik Otomasi Industri dan Robotika'),
 ('23010030406', 'Priagung Jembar W', 'Sanggar Indah Banjaran', 'Pendidikan Teknik Otomasi Industri dan Robotika');
 
+-- Create table jurusan
+CREATE TABLE jurusan (id_jurusan VARCHAR(4) PRIMARY KEY NOT NULL, nama_jurusan VARCHAR(100));
+
 -- Insert data to jurusan tables
 INSERT INTO jurusan VALUES 
 ('U001', 'Rekayasa Perangkat Lunak'), 
 ('U002', 'PGSD Penjas'), 
 ('U003', 'Pendidikan Teknik Otomasi Industri dan Robotika');
+
+-- Create table dosen
+CREATE TABLE dosen (nip VARCHAR(11), nama_dosen VARCHAR(120));
 
 -- Insert data to dosen tables
 INSERT INTO dosen VALUES 
@@ -39,6 +33,9 @@ INSERT INTO dosen VALUES
 ('23205', 'Themas Febrianto'), 
 ('23206', 'Muhammad Rabbani');
 
+-- Create table matakuliah
+CREATE TABLE matakuliah (kd_matkul VARCHAR(5) PRIMARY KEY NOT NULL, nama_matkul VARCHAR(70) NOT NULL, sks INT(2) NOT NULL);
+
 -- Insert data to matakuliah tables
 INSERT INTO matakuliah VALUES 
 ('C1001', 'Pemrograman Berorientasi Objek', '7'), 
@@ -48,7 +45,10 @@ INSERT INTO matakuliah VALUES
 ('C1005', 'Robotika Industri', '9'), 
 ('C1006', 'Logika Pemrograman Robotika', '12');
 
--- Insert data to laporan tables for relation
+-- Create table khs
+CREATE TABLE khs (id INTEGER PRIMARY KEY AUTOINCREMENT, nim INT(11) NOT NULL, kdMatkul VARCHAR(5) NOT NULL, nip VARCHAR(5) NOT NULL, id_jurusan VARCHAR(4) NOT NULL, nilai VARCHAR(2), FOREIGN KEY (nim) REFERENCES mahasiswa(nim), FOREIGN KEY (kdMatkul) REFERENCES matakuliah(kdMatkul), FOREIGN KEY (nip) REFERENCES dosen(nip), FOREIGN KEY (id_jurusan) REFERENCES jurusan(id_jurusan));
+
+-- Insert data to khs tables for relation
 INSERT INTO khs VALUES ('1', '23010030401', 'C1001', '23201', 'U001', 'A+'), ('2', '23010030402', 'C1002', '23202', 'U001', 'B+'), ('3', '23010030403', 'C1003', '23203', 'U002', 'A'), ('4', '23010030404', 'C1004', '23204', 'U002', 'D'), ('5', '23010030405', 'C1005', '23205', 'U003', 'D+'), ('6', '23010030406', 'C1006', '23206', 'U003', 'B');
 
 -- Meng-update atau mengubah value column dari table mata kuliah berdasarkan kd_matkul
@@ -88,5 +88,9 @@ SELECT khs.nip, dosen.nama_dosen, COUNT( DISTINCT khs.nim), mahasiswa.nama FROM 
 SELECT mahasiswa.nama, mahasiswa.dob,(cast(strftime('%Y.%m%d', 'now') - strftime('%Y.%m%d', dob) as int)) AS umur FROM mahasiswa ORDER BY umur ASC; --7
 
 -- Menampilkan data mahasiswa yang harus memperbaiki nilai yang mana jika nilai nya E ataupun D
-SELECT * FROM khs JOIN dosen ON dosen.nip=khs.nip JOIN mahasiswa ON mahasiswa.nim=khs.nim WHERE nilai LIKE 'D%' OR nilai LIKE 'E%'; --8
-SELECT * FROM khs WHERE nilai LIKE 'D%' OR nilai LIKE 'E%';
+
+-- With Join
+SELECT * FROM khs JOIN dosen ON dosen.nip=khs.nip JOIN mahasiswa ON mahasiswa.nim=khs.nim WHERE nilai LIKE 'D%' OR nilai LIKE 'E%';z --8
+
+-- With WHERE only
+SELECT mahasiswa.nama, mahasiswa.nim, matakuliah.nama_matkul, dosen.nama_dosen, dosen.nip, khs.nilai FROM matakuliah, mahasiswa, dosen, khs WHERE UPPER(khs.nilai)>'C' AND mahasiswa.nim=khs.nim AND khs.kdMatkul=matakuliah.kd_matkul AND khs.nip=dosen.nip; 
