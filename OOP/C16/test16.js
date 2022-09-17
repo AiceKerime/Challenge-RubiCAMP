@@ -32,9 +32,10 @@ class CarFactory {
     }
 
     static maUUID() {
-        const { v4: uuidv4 } = require('uuidv4');
+        const { v4: uuidv4 } = require('uuid');
+        uuidv4();
 
-        return uuidv4;
+        return uuidv4()
     }
 
     garansi(year) {
@@ -99,7 +100,7 @@ class AE86 extends Car {
     }
 }
 
-let comp = new CarFactory('BMW', 'Daihatsu')
+let comp = new CarFactory('BMW', 'Toyota')
 let date = (Math.floor(Math.random() * 15) + 2000)
 comp.produksi(date)
 comp.garansi(date)
