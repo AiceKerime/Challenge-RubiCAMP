@@ -27,8 +27,8 @@ class CarFactory {
             B++
         }
 
-        console.log(`Pada tahun ${year}, perusahaan ${this.brand1} memproduksi sebanyak ${A}unit mobil.
-        Pada tahun yang sama perusahaan ${this.brand2} juga memproduksi mobil sebanyak ${B} unit mobil.`)
+        console.log(`Pada tahun ${year}, perusahaan ${this.merk1} memproduksi sebanyak ${A} unit mobil.
+Pada tahun yang sama perusahaan ${this.merk2} juga memproduksi mobil sebanyak ${B} unit mobil.`)
     }
 
     static maUUID() {
