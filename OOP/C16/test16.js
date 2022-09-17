@@ -32,9 +32,9 @@ class CarFactory {
     }
 
     static maUUID() {
-        const { myUUID } = require('uuidv4');
+        const { v4: uuidv4 } = require('uuidv4');
 
-        return myUUID;
+        return uuidv4;
     }
 
     garansi(year) {
@@ -49,7 +49,7 @@ class CarFactory {
                 `)
                 console.log(`Merk: ${this.cars[i].brand}
 Model: ${this.cars[i].model}
-Nomor mesin: ${this.cars[i].mesin}`)
+Nomor mesin: ${this.cars[i].noMesin}`)
                 console.log(`Waktu garansi: ${this.cars[i].garansi} tahun.
 
 Garansi akan tidak aktif pada tahun ${y}, karena diproduksi tahun ${this.cars[i].yearz}`)
@@ -59,7 +59,7 @@ Garansi akan tidak aktif pada tahun ${y}, karena diproduksi tahun ${this.cars[i]
                 `)
                 console.log(`Merk: ${this.cars[i].brand}
 Model: ${this.cars[i].model}
-Nomor mesin: ${this.cars[i].mesin}`)
+Nomor mesin: ${this.cars[i].noMesin}`)
                 console.log(`Waktu garansi: ${this.cars[i].garansi} tahun.
 Garansi akan tidak aktif pada tahun ${y}, karena diproduksi tahun ${this.cars[i].yearz}`)
             }
@@ -76,7 +76,7 @@ class Car {
         this.sit = sit;
         this.door = door;
         this.tyre = tyre;
-        this.mesin = CarFactory.maUUID();
+        this.noMesin = CarFactory.maUUID();
     }
 }
 
@@ -95,7 +95,7 @@ class E30 extends Car {
 
 class AE86 extends Car {
     constructor() {
-        super('Toyota', 'AE86 Trueno', 1984, 5, 7, 5, new Ban(4, 'Dunlop'))
+        super('Toyota', 'AE86 Trueno', 1984, 10, 7, 5, new Ban(4, 'Dunlop'))
     }
 }
 
