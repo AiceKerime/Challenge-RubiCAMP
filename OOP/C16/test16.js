@@ -30,7 +30,7 @@ class CarFactory {
             B++
         }
 
-        let C = 7;
+        let C = 2;
         for (let i = 0; i < CarFactory.random(); i++) {
             const car3 = new Civic(total);
 
@@ -40,8 +40,7 @@ class CarFactory {
 
 
         console.log(`Pada tahun 1990, perusahaan ${this.merk1} memproduksi sebanyak ${A} unit mobil.
-Pada tahun yang sama perusahaan ${this.merk2} juga memproduksi mobil sebanyak ${B} unit mobil.
-Perusahaan ${this.merk3}`)
+Pada tahun yang sama perusahaan ${this.merk2} juga memproduksi mobil sebanyak ${B} unit mobil dan perusahaan ${this.merk3} memproduksi sebanyak ${C} unit mobil.`)
     }
 
     // Salah satu kemampuan dari NodeJS untuk me-generate suatu nomor unik secara universal atau umum (UUID) dengan  menggunakan static method
@@ -57,6 +56,7 @@ Perusahaan ${this.merk3}`)
         console.log("\nNama Produk:")
         for (let i = 0; i < this.cars.length; i++) {
             let y = year;
+            var habis = this.cars[i].garansi + this.cars[i].yearz
 
             if (y > (this.cars[i].garansi + this.cars[i].yearz)) {
                 console.log(`
@@ -66,7 +66,7 @@ Merk: ${this.cars[i].brand}
 Model: ${this.cars[i].model} 
 Nomor Mesin: ${this.cars[i].noMesin}
 Dengan waktu garansi ${this.cars[i].garansi} tahun, di tahun ${y} garansi sudah TIDAK AKTIF,
-karena diproduksi pada tahun ${this.cars[i].yearz} dan sudah habis pada tahun ${this.cars[i].garansi + this.cars[i].yearz}.\n`)
+karena diproduksi pada tahun ${this.cars[i].yearz} dan sudah habis pada tahun ${habis}.`)
             } else {
                 console.log(`
 ==========================================================================================
@@ -75,7 +75,7 @@ Merk: ${this.cars[i].brand}
 Model: ${this.cars[i].model}
 Nomor Mesin: ${this.cars[i].noMesin}
 Dengan waktu garansi ${this.cars[i].garansi} tahun, di tahun ${y} garansi masih AKTIF, 
-karena diproduksi pada tahun ${this.cars[i].yearz} dan baru akan habis pada tahun ${this.cars[i].garansi + this.cars[i].yearz}.\n`)
+karena diproduksi pada tahun ${this.cars[i].yearz} dan akan habis pada tahun ${habis}.`)
             }
 
         }
@@ -85,6 +85,7 @@ karena diproduksi pada tahun ${this.cars[i].yearz} dan baru akan habis pada tahu
 
 
 // Class yang digunakan untuk pemanggilan properti yang mana properti nya dimasukkan ke dalam constructor, isinya itu berupa spesifikasi dari mobil. Menggunakan property method
+// Encapsulation
 class Car {
     constructor(brand, model, yearz, gr, sit, door, tyre) {
         this.brand = brand;
@@ -94,11 +95,12 @@ class Car {
         this.sit = sit;
         this.door = door;
         this.tyre = tyre;
-        this.noMesin = CarFactory.MyUUID();
+        this.noMesin = CarFactory.MyUUID(); // Aggregation
     }
 }
 
 // Class yang digunakan untuk pemanggilan properti yang mana properti nya dimasukkan ke dalam constructor, isinya itu berupa informasi spesifikasi ban yang digunakan oleh mobil. Menggunakan property method
+// Encapsulation
 class Ban {
     constructor(size, TyreBrand) {
         this.size = size
@@ -109,26 +111,29 @@ class Ban {
 // Inheritance, yang isinya itu adalah untuk menginputkan data mobil berdasarkan dari properti yang ada di class Car
 class E30 extends Car {
     constructor() {
-        super('BMW', 'E30', 1989, 5, 5, 5, new Ban(4, 'GT Radial'))
+        // Composition
+        super('BMW', 'E30', 1990, 5, 5, 5, new Ban(4, 'GT Radial'))
     }
 }
 
 // Inheritance, yang isinya itu adalah untuk menginputkan data mobil berdasarkan dari properti yang ada di class Car
 class AE86 extends Car {
     constructor() {
-        super('Toyota', 'AE86 Trueno', 1984, 10, 5, 5, new Ban(4, 'Goodyear'))
+        // Composition
+        super('Toyota', 'AE86 Trueno', 1990, 10, 5, 5, new Ban(4, 'Goodyear'))
     }
 }
 
 // Inheritance atau pewa, yang isinya itu adalah untuk menginputkan data mobil berdasarkan dari properti yang ada di class Car
 class Civic extends Car {
     constructor() {
-        super('Honda', 'Civic SB3', 1990, 10, 5, 5, new Ban(4, 'Perill'))
+        // Composition
+        super('Honda', 'Civic SB3', 1990, 10, 5, 5, new Ban(4, 'Dunlop'))
     }
 }
 
-// Pemanggilan class dan parameternya  dj method2 nya
+// Pemanggilan class dan parameternya  dj method2 nya  
 let comp = new CarFactory('BMW', 'Toyota', 'Honda')
-let date = (Math.floor(Math.random() * 15) + 2000)
+let date = 2000
 comp.produksi(date)
 comp.garansi(date)
