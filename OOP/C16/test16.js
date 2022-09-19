@@ -39,7 +39,7 @@ class CarFactory {
         }
 
 
-        console.log(`Pada tahun 1990, perusahaan ${this.merk1} memproduksi sebanyak ${A} unit mobil.
+        console.log(`Pada tahun ${total}, perusahaan ${this.merk1} memproduksi sebanyak ${A} unit mobil.
 Pada tahun yang sama perusahaan ${this.merk2} juga memproduksi mobil sebanyak ${B} unit mobil dan perusahaan ${this.merk3} memproduksi sebanyak ${C} unit mobil.`)
     }
 
@@ -77,9 +77,7 @@ Nomor Mesin: ${this.cars[i].noMesin}
 Dengan waktu garansi ${this.cars[i].garansi} tahun, di tahun ${y} garansi masih AKTIF, 
 karena diproduksi pada tahun ${this.cars[i].yearz} dan akan habis pada tahun ${habis}.`)
             }
-
         }
-
     }
 }
 
@@ -124,7 +122,7 @@ class AE86 extends Car {
     }
 }
 
-// Inheritance atau pewa, yang isinya itu adalah untuk menginputkan data mobil berdasarkan dari properti yang ada di class Car
+// Inheritance atau pewarisan, yang isinya itu adalah untuk menginputkan data mobil berdasarkan dari properti yang ada di class Car
 class Civic extends Car {
     constructor() {
         // Composition
@@ -132,8 +130,7 @@ class Civic extends Car {
     }
 }
 
-// Pemanggilan class dan parameternya  dj method2 nya  
+// Pemanggilan class dan parameternya  danjuga method2 nya  
 let comp = new CarFactory('BMW', 'Toyota', 'Honda')
-let date = 2000
-comp.produksi(date)
-comp.garansi(date)
+comp.produksi(1990)
+comp.garansi(1996)
