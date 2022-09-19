@@ -127,7 +127,7 @@ class Civic extends Car {
     }
 }
 
-// Pemanggilan class dan parameternya
+// Pemanggilan class dan parameternya  dj method2 nya
 let comp = new CarFactory('BMW', 'Toyota', 'Honda')
 let date = (Math.floor(Math.random() * 15) + 2000)
 comp.produksi(date)
