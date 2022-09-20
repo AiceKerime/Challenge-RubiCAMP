@@ -31,7 +31,7 @@ export default class MesinHitung {
     }
 
     exponent(x) {
-        this.x **= x
+        this.x = Math.pow(this.x, 3);
         return this
     }
 
