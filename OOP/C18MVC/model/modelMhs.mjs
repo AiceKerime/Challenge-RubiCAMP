@@ -14,8 +14,8 @@ export default class ModelMhs {
     }
 
 
-    static TambahMahasiswa(nim, nama, alamat, nama_jurusan, dob, callback) {
-        db.run('INSERT INTO mahasiswa VALUES (?, ?, ?, ?, ?)', [nim, nama, alamat, nama_jurusan, dob], (err, data) => {
+    static TambahMahasiswa(nim, nama, alamat, id_jurusan, dob, callback) {
+        db.run('INSERT INTO mahasiswa VALUES (?, ?, ?, ?, ?)', [nim, nama, alamat, id_jurusan, dob], (err, data) => {
             callback(err, data)
         })
     }

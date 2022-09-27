@@ -30,7 +30,7 @@ export default class ContMhs {
 
     static daftarMahasiswa() {
         const tableMahasiswa = new Table({
-            head: ['NIM', 'Nama', 'Tanggal Lahir', 'Alamat', 'Nama Jurusan']
+            head: ['NIM', 'Nama', 'Tanggal Lahir', 'Alamat', 'Id Jurusan']
         });
         ModelMhs.DaftarMahasiswa((err, data) => {
             if (err) {
@@ -43,7 +43,7 @@ export default class ContMhs {
                     item.nim,
                     item.nama,
                     item.alamat,
-                    item.nama_jurusan,
+                    item.id_jurusan,
                     item.dob
                 ])
             })
@@ -85,9 +85,9 @@ Jurusan : ${data[0].dob}
         rl.question('NIM :', (nim) => {
             rl.question('Nama: ', (nama) => {
                 rl.question('Alamat: ', (alamat) => {
-                    rl.question('Jurusan: ', (nama_jurusan) => {
+                    rl.question('Jurusan: ', (id_jurusan) => {
                         rl.question('Tanggal Lahir: ', (dob) => {
-                            db.run('INSERT INTO mahasiswa VALUES (?, ?, ?, ?, ?)', [nim, nama, alamat, nama_jurusan, dob], (err) => {
+                            db.run('INSERT INTO mahasiswa VALUES (?, ?, ?, ?, ?)', [nim, nama, alamat, id_jurusan, dob], (err) => {
                                 if (err) {
                                     console.log('Gagal menambah data mahasiswa', err)
                                     process.exit(1)

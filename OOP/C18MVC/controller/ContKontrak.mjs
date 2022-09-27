@@ -2,7 +2,7 @@ import Table from "cli-table"
 import ModelKontrak from "../model/modelKontrak.mjs"
 import Login, { db, rl } from "../test18MVC.mjs"
 import ViewKontrak from "../view/viewKontrak.mjs"
-import users from "./ContLog.mjs"
+import ViewLog from "../view/viewLog.mjs"
 
 export default class ContKontrak {
     static MenuKontrak() {
@@ -84,21 +84,19 @@ Nilai           : ${data[0].nilai}
     static tambahKontrak() {
         ViewLog.line()
         console.log('Lengkapi data di bawah ini: ')
-        rl.question('ID: ', (id) => {
-            rl.question('NIM: ', (nim) => {
-                rl.question('Kode matkul: ', (kdMatkul) => {
-                    rl.question('NIP: ', (nip) => {
-                        rl.question('ID Jurusan: ', (id_jurusan) => {
-                            rl.question('Nilai: ', (nilai) => {
-                                db.run('INSERT INTO kontrak VALUES (?, ?, ?, ?, ?, ?)', [id, nim, kdMatkul, nip, id_jurusan, nilai], (err) => {
-                                    if (err) {
-                                        console.log('Gagal menambahkan data kontrak mahasiswa')
-                                        process.exit(1)
-                                    } else {
-                                        console.log('Data kontrak mahasiswa berhasil ditambahkan')
-                                        ContKontrak.daftarKontrak()
-                                    }
-                                })
+        rl.question('NIM: ', (nim) => {
+            rl.question('Kode matkul: ', (kdMatkul) => {
+                rl.question('NIP: ', (nip) => {
+                    rl.question('ID Jurusan: ', (id_jurusan) => {
+                        rl.question('Nilai: ', (nilai) => {
+                            db.run('INSERT INTO kontrak (nim, kdMatkul, nip, id_jurusan, nilai) VALUES (?, ?, ?, ?, ?)', [nim, kdMatkul, nip, id_jurusan, nilai], (err) => {
+                                if (err) {
+                                    console.log('Gagal menambahkan data kontrak mahasiswa')
+                                    process.exit(1)
+                                } else {
+                                    console.log('Data kontrak mahasiswa berhasil ditambahkan')
+                                    ContKontrak.daftarKontrak()
+                                }
                             })
                         })
                     })
