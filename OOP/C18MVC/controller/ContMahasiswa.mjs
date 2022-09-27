@@ -67,11 +67,11 @@ export default class ContMhs {
                     console.log(`
 =============================================
 Detail mahasiswa dengan NIM '${nim}' :
-NIM     : ${data[0].nim}
-Nama    : ${data[0].nama}
-Alamat  : ${data[0].alamat}
-Jurusan : ${data[0].nama_jurusan}
-Jurusan : ${data[0].dob}
+NIM           : ${data[0].nim}
+Nama          : ${data[0].nama}
+Alamat        : ${data[0].alamat}
+Id Jurusan    : ${data[0].nama_jurusan}
+Tanggal Lahir : ${data[0].dob}
             `);
                     ContMhs.MenuMahasiswa()
                 }

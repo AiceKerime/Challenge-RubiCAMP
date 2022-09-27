@@ -12,6 +12,7 @@ const dbFile = "./database/univ.db";
 export const db = new sqlite3.Database(dbFile, sqlite3.OPEN_READWRITE, (err) => {
     if (err) { console.log(`Gagal menghubungkan ke database`, err) };
 });
+
 // USER START
 class users {
     static username() {
@@ -168,7 +169,7 @@ class ContMhs {
                     item.nim,
                     item.nama,
                     item.alamat,
-                    item.nama_jurusan,
+                    item.id_jurusan,
                     item.dob
                 ])
             })
@@ -192,11 +193,11 @@ class ContMhs {
                     console.log(`
 =============================================
 Detail mahasiswa dengan NIM '${nim}' :
-NIM     : ${data[0].nim}
-Nama    : ${data[0].nama}
-Alamat  : ${data[0].alamat}
-Jurusan : ${data[0].nama_jurusan}
-Jurusan : ${data[0].dob}
+NIM           : ${data[0].nim}
+Nama          : ${data[0].nama}
+Alamat        : ${data[0].alamat}
+Id Jurusan    : ${data[0].id_jurusan}
+Tanggal Lahir : ${data[0].dob}
             `);
                     ContMhs.MenuMahasiswa()
                 }
@@ -210,9 +211,9 @@ Jurusan : ${data[0].dob}
         rl.question('NIM :', (nim) => {
             rl.question('Nama: ', (nama) => {
                 rl.question('Alamat: ', (alamat) => {
-                    rl.question('Jurusan: ', (nama_jurusan) => {
+                    rl.question('Jurusan: ', (id_jurusan) => {
                         rl.question('Tanggal Lahir: ', (dob) => {
-                            db.run('INSERT INTO mahasiswa VALUES (?, ?, ?, ?, ?)', [nim, nama, alamat, nama_jurusan, dob], (err) => {
+                            db.run('INSERT INTO mahasiswa VALUES (?, ?, ?, ?, ?)', [nim, nama, alamat, id_jurusan, dob], (err) => {
                                 if (err) {
                                     console.log('Gagal menambah data mahasiswa', err)
                                     process.exit(1)
