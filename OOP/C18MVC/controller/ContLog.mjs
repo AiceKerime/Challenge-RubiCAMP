@@ -1,6 +1,10 @@
-import ViewLog from "../view/viewLog.mjs"
-import ModelLogin from "../model/modelLogin.mjs"
 import Login, { rl } from "../test18MVC.mjs"
+
+//IMPORT MODEL
+import ModelLogin from "../model/modelLogin.mjs"
+
+//IMPORT VIEW
+import ViewLog from "../view/viewLog.mjs"
 
 export default class users {
     static username() {

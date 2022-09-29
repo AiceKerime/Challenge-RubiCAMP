@@ -1,10 +1,14 @@
 import Table from "cli-table"
+import Login, { db, rl } from "../test18MVC.mjs"
+
+// IMPORT MODEL
 import ModelDosen from "../model/modelDosen.mjs"
 import ModelJurusan from "../model/modelJurusan.mjs"
 import ModelKontrak from "../model/modelKontrak.mjs"
 import ModelMatkul from "../model/modelMatkul.mjs"
 import ModelMhs from "../model/modelMhs.mjs"
-import Login, { db, rl } from "../test18MVC.mjs"
+
+// IMPORT View
 import ViewKontrak from "../view/viewKontrak.mjs"
 import ViewLog from "../view/viewLog.mjs"
 
@@ -88,6 +92,7 @@ Nilai           : ${data[0].nilai}
     static tambahKontrak() {
         ViewLog.line()
         console.log('Lengkapi data di bawah ini: ')
+
         // Table Mahasiswa
         const tableMahasiswa = new Table({
             head: ['NIM', 'Nama', 'Tanggal Lahir', 'Alamat', 'Id Jurusan']
@@ -109,6 +114,7 @@ Nilai           : ${data[0].nilai}
             })
             console.log(tableMahasiswa.toString())
             rl.question('NIM: ', (nim) => {
+
                 // Table Matkul
                 const tableMatkul = new Table({
                     head: ['Kode Mata Kuliah', 'Nama Mata Kuliah', 'SKS']
@@ -146,6 +152,7 @@ Nilai           : ${data[0].nilai}
                             })
                             console.log(tableDosen.toString())
                             rl.question('NIP: ', (nip) => {
+
                                 // Table Jurusan
                                 const tableJurusan = new Table({
                                     head: ['Kode Jurusan', 'Nama Jurusan']

@@ -1,9 +1,13 @@
-import Login, { db, rl } from "../test18MVC.mjs";
-import ViewMhs from "../view/viewMhs.mjs";
 import Table from "cli-table";
+import Login, { db, rl } from "../test18MVC.mjs";
+
+//IMPORT MODEL
 import ModelMhs from "../model/modelMhs.mjs";
-import ViewLog from "../view/viewLog.mjs";
 import ModelJurusan from "../model/modelJurusan.mjs";
+
+//IMPORT VIEW
+import ViewMhs from "../view/viewMhs.mjs";
+import ViewLog from "../view/viewLog.mjs";
 
 export default class ContMhs {
     static MenuMahasiswa() {

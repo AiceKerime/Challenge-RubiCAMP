@@ -1,6 +1,10 @@
 import Table from "cli-table";
-import ModelMatkul from "../model/modelMatkul.mjs";
 import Login, { db, rl } from "../test18MVC.mjs";
+
+//IMPORT MODEL
+import ModelMatkul from "../model/modelMatkul.mjs";
+
+//IMPORT VIEW
 import ViewLog from "../view/viewLog.mjs";
 import ViewMatkul from "../view/viewMatkul.mjs";
 

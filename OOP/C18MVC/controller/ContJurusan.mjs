@@ -1,6 +1,10 @@
 import Table from "cli-table"
-import ModelJurusan from "../model/modelJurusan.mjs"
 import Login, { db, rl } from "../test18MVC.mjs"
+
+//IMPORT MODEL
+import ModelJurusan from "../model/modelJurusan.mjs"
+
+//IMPORT VIEW
 import ViewJurusan from "../view/viewJurusan.mjs"
 import ViewLog from "../view/viewLog.mjs"
 

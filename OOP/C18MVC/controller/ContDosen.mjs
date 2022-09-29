@@ -1,6 +1,10 @@
 import Table from "cli-table";
-import ModelDosen from "../model/modelDosen.mjs";
 import Login, { db, rl } from "../test18MVC.mjs";
+
+//IMPORT MODEL
+import ModelDosen from "../model/modelDosen.mjs";
+
+//IMPORT VIEW
 import ViewDosen from "../view/viewDosen.mjs";
 
 export default class ContDosen {
