@@ -3,7 +3,7 @@ sqlite3 univdabase.db
 
 
 -- Create table mahasiswa
-CREATE TABLE mahasiswa(nim INT(11) PRIMARY KEY NOT NULL, nama VARCHAR(120) NOT NULL, alamat TEXT NOT NULL, nama_jurusan VARCHAR(100) NOT NULL, FOREIGN KEY (jurusan) REFERENCES jurusan(id_jurusan));
+CREATE TABLE mahasiswa(nim INT(11) PRIMARY KEY NOT NULL, nama VARCHAR(120) NOT NULL, alamat TEXT NOT NULL, id_jurusan VARCHAR(100) NOT NULL, FOREIGN KEY (id_jurusan) REFERENCES jurusan(id_jurusan));
 
 -- Insert data to mahasiswa tables
 INSERT INTO mahasiswa VALUES 
@@ -46,10 +46,10 @@ INSERT INTO matakuliah VALUES
 ('C1006', 'Logika Pemrograman Robotika', '12');
 
 -- Create table khs
-CREATE TABLE khs (id INTEGER PRIMARY KEY AUTOINCREMENT, nim INT(11) NOT NULL, kdMatkul VARCHAR(5) NOT NULL, nip VARCHAR(5) NOT NULL, id_jurusan VARCHAR(4) NOT NULL, nilai VARCHAR(2), FOREIGN KEY (nim) REFERENCES mahasiswa(nim), FOREIGN KEY (kdMatkul) REFERENCES matakuliah(kdMatkul), FOREIGN KEY (nip) REFERENCES dosen(nip), FOREIGN KEY (id_jurusan) REFERENCES jurusan(id_jurusan));
+CREATE TABLE kontrak (id INTEGER PRIMARY KEY AUTOINCREMENT, nim INT(11) NOT NULL, kdMatkul VARCHAR(5) NOT NULL, nip VARCHAR(5) NOT NULL, id_jurusan VARCHAR(4) NOT NULL, nilai VARCHAR(2), FOREIGN KEY (nim) REFERENCES mahasiswa(nim), FOREIGN KEY (kdMatkul) REFERENCES matakuliah(kd_matkul), FOREIGN KEY (nip) REFERENCES dosen(nip), FOREIGN KEY (id_jurusan) REFERENCES jurusan(id_jurusan));
 
 -- Insert data to khs tables for relation
-INSERT INTO khs VALUES ('1', '23010030401', 'C1001', '23201', 'U001', 'A+'), ('2', '23010030402', 'C1002', '23202', 'U001', 'B+'), ('3', '23010030403', 'C1003', '23203', 'U002', 'A'), ('4', '23010030404', 'C1004', '23204', 'U002', 'D'), ('5', '23010030405', 'C1005', '23205', 'U003', 'D+'), ('6', '23010030406', 'C1006', '23206', 'U003', 'B');
+INSERT INTO kontrak (nim, kdMatkul, nip, id_jurusan, nilai) VALUES ('23010030401', 'C1001', '23201', 'U001', 'A+'), ('23010030402', 'C1002', '23202', 'U001', 'B+'), ('23010030403', 'C1003', '23203', 'U002', 'A'), ('23010030404', 'C1004', '23204', 'U002', 'D'), ('23010030405', 'C1005', '23205', 'U003', 'D+'), ('23010030406', 'C1006', '23206', 'U003', 'B');
 
 -- Meng-update atau mengubah value column dari table mata kuliah berdasarkan kd_matkul
 UPDATE matakuliah SET nama_matkul = 'data mining' WHERE kd_matkul = 'C1001';

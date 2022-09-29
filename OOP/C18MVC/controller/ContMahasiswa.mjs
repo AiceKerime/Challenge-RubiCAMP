@@ -3,6 +3,7 @@ import ViewMhs from "../view/viewMhs.mjs";
 import Table from "cli-table";
 import ModelMhs from "../model/modelMhs.mjs";
 import ViewLog from "../view/viewLog.mjs";
+import ModelJurusan from "../model/modelJurusan.mjs";
 
 export default class ContMhs {
     static MenuMahasiswa() {
@@ -85,16 +86,33 @@ Tanggal Lahir : ${data[0].dob}
         rl.question('NIM :', (nim) => {
             rl.question('Nama: ', (nama) => {
                 rl.question('Alamat: ', (alamat) => {
-                    rl.question('Jurusan: ', (id_jurusan) => {
-                        rl.question('Tanggal Lahir: ', (dob) => {
-                            db.run('INSERT INTO mahasiswa VALUES (?, ?, ?, ?, ?)', [nim, nama, alamat, id_jurusan, dob], (err) => {
-                                if (err) {
-                                    console.log('Gagal menambah data mahasiswa', err)
-                                    process.exit(1)
-                                } else {
-                                    console.log('Data mahasiswa berhasil ditambahkan')
-                                    ContMhs.daftarMahasiswa()
-                                }
+                    const tableJurusan = new Table({
+                        head: ['Kode Jurusan', 'Nama Jurusan']
+                    })
+                    ModelJurusan.DaftarJurusan((err, data) => {
+                        if (err) {
+                            console.log('Gagal mengambil data jurusan', err)
+                            process.exit(1)
+                        }
+
+                        data.forEach(item => {
+                            tableJurusan.push([
+                                item.id_jurusan,
+                                item.nama_jurusan
+                            ])
+                        })
+                        console.log(tableJurusan.toString())
+                        rl.question('Jurusan: ', (id_jurusan) => {
+                            rl.question('Tanggal Lahir: ', (dob) => {
+                                db.run('INSERT INTO mahasiswa VALUES (?, ?, ?, ?, ?)', [nim, nama, alamat, id_jurusan, dob], (err) => {
+                                    if (err) {
+                                        console.log('Gagal menambah data mahasiswa', err)
+                                        process.exit(1)
+                                    } else {
+                                        console.log('Data mahasiswa berhasil ditambahkan')
+                                        ContMhs.daftarMahasiswa()
+                                    }
+                                })
                             })
                         })
                     })
