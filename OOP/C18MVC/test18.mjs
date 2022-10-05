@@ -389,10 +389,13 @@ class ContDosen {
                     break;
                 case '2':
                     ContDosen.cariDosen()
+                    break;
                 case '3':
                     ContDosen.tambahDosen()
+                    break;
                 case '4':
                     ContDosen.hapusDosen()
+                    break;
                 case '5':
                     Login.home()
                     break;
