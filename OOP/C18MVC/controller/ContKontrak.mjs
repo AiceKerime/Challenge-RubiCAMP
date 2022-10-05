@@ -95,7 +95,7 @@ Nilai           : ${data[0].nilai}
 
         // Table Mahasiswa
         const tableMahasiswa = new Table({
-            head: ['NIM', 'Nama', 'Tanggal Lahir', 'Alamat', 'Id Jurusan']
+            head: ['NIM', 'Nama', 'Alamat', 'Id Jurusan', 'Tanggal Lahir']
         });
         ModelMhs.DaftarMahasiswa((err, data) => {
             if (err) {
@@ -190,7 +190,7 @@ Nilai           : ${data[0].nilai}
                 })
             })
         })
-    }
+    }   
 
     static hapusKontrak() {
         ViewLog.line()

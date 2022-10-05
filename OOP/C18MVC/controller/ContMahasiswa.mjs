@@ -35,7 +35,7 @@ export default class ContMhs {
 
     static daftarMahasiswa() {
         const tableMahasiswa = new Table({
-            head: ['NIM', 'Nama', 'Tanggal Lahir', 'Alamat', 'Id Jurusan']
+            head: ['NIM', 'Nama', 'Alamat', 'Id Jurusan', 'Tanggal Lahir']
         });
         ModelMhs.DaftarMahasiswa((err, data) => {
             if (err) {
@@ -75,8 +75,8 @@ Detail mahasiswa dengan NIM '${nim}' :
 NIM           : ${data[0].nim}
 Nama          : ${data[0].nama}
 Alamat        : ${data[0].alamat}
-Id Jurusan    : ${data[0].nama_jurusan}
 Tanggal Lahir : ${data[0].dob}
+Id Jurusan    : ${data[0].id_jurusan}
             `);
                     ContMhs.MenuMahasiswa()
                 }
@@ -127,15 +127,35 @@ Tanggal Lahir : ${data[0].dob}
 
     static hapusMahasiswa() {
         ViewLog.line()
-        rl.question('Masukkan NIM Mahasiswa : ', (nim) => {
-            ModelMhs.HapusMahasiswa([nim], (err) => {
-                if (err) {
-                    console.log('Gagal menghapus data mahasiswa', err)
-                    process.exit(1)
-                } else {
-                    console.log(`Data mahasiswa dengan '${nim}' telah dihapus`);
-                    ContMhs.MenuMahasiswa()
-                }
+        const tableMahasiswa = new Table({
+            head: ['NIM', 'Nama', 'Alamat', 'Id Jurusan', 'Tanggal Lahir']
+        });
+        ModelMhs.DaftarMahasiswa((err, data) => {
+            if (err) {
+                console.log('Gagal mengambil data mahasiswa', err)
+                process.exit(1)
+            }
+
+            data.forEach(item => {
+                tableMahasiswa.push([
+                    item.nim,
+                    item.nama,
+                    item.alamat,
+                    item.id_jurusan,
+                    item.dob
+                ])
+            })
+            console.log(tableMahasiswa.toString())
+            rl.question('Masukkan NIM Mahasiswa : ', (nim) => {
+                ModelMhs.HapusMahasiswa([nim], (err) => {
+                    if (err) {
+                        console.log('Gagal menghapus data mahasiswa', err)
+                        process.exit(1)
+                    } else {
+                        console.log(`Data mahasiswa dengan '${nim}' telah dihapus`);
+                        ContMhs.MenuMahasiswa()
+                    }
+                })
             })
         })
     }

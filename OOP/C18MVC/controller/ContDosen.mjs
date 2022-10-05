@@ -6,6 +6,7 @@ import ModelDosen from "../model/modelDosen.mjs";
 
 //IMPORT VIEW
 import ViewDosen from "../view/viewDosen.mjs";
+import ViewLog from "../view/viewLog.mjs";
 
 export default class ContDosen {
     static MenuDosen() {

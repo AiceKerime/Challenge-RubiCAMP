@@ -90,7 +90,7 @@ SELECT mahasiswa.nama, mahasiswa.dob,(cast(strftime('%Y.%m%d', 'now') - strftime
 -- Menampilkan data mahasiswa yang harus memperbaiki nilai yang mana jika nilai nya E ataupun D
 
 -- With JOIN
-SELECT * FROM khs JOIN dosen ON dosen.nip=khs.nip JOIN mahasiswa ON mahasiswa.nim=khs.nim WHERE nilai LIKE 'D%' OR nilai LIKE 'E%';z --8
+SELECT mahasiswa.nim, mahasiswa.nama, mahasiswa.nama_jurusan, dosen.nama_dosen, khs.nilai FROM khs JOIN mahasiswa ON mahasiswa.nim=khs.nim JOIN matakuliah ON matakuliah.kd_matkul=khs.kdMatkul JOIN dosen ON dosen.nip=khs.nip JOIN jurusan ON jurusan.id_jurusan=khs.id_jurusan WHERE UPPER(khs.nilai)<'C'; --8
 
 -- Without JOIN
 SELECT mahasiswa.nama, mahasiswa.nim, matakuliah.nama_matkul, dosen.nama_dosen, dosen.nip, khs.nilai FROM matakuliah, mahasiswa, dosen, khs WHERE UPPER(khs.nilai)>'C' AND mahasiswa.nim=khs.nim AND khs.kdMatkul=matakuliah.kd_matkul AND khs.nip=dosen.nip; -- Tanpa nama jurusan
