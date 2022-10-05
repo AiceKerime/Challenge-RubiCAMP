@@ -18,10 +18,13 @@ export default class ContDosen {
                     break;
                 case '2':
                     ContDosen.cariDosen()
+                    break;
                 case '3':
                     ContDosen.tambahDosen()
+                    break;
                 case '4':
                     ContDosen.hapusDosen()
+                    break;
                 case '5':
                     Login.home()
                     break;
@@ -76,7 +79,7 @@ Nama Dosen  : ${data[0].nama_dosen}
 
     static tambahDosen() {
         ViewLog.line()
-        console.log('Lengkapi data di bawah ini : ')
+        console.log('Lengkapi data di bawah ini :')
         rl.question('NIP: ', (nip) => {
             rl.question('Nama Dosen: ', (nama_dosen) => {
                 db.run('INSERT INTO dosen VALUES (?, ?)', [nip, nama_dosen], (err) => {
